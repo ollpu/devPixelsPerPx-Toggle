@@ -1,13 +1,33 @@
 {
-  "name": "devpixelsperpx-toggle",
-  "fullName": "Zoom Menu Elements",
-  "title": "Zoom Menu Elements",
-  "id": "devpixelsperpx-toggle",
-  "description": "Zoom all elements by factor 2. It works by setting the value of `layout.css.devPixelsPerPx` to 2",
-  "homepage": "https://addons.mozilla.org/de/firefox/addon/zoom-menu-elements/",
-  "icon": "icon.png",
-  "icon64": "icon-64.png",
-  "author": "Ruben Barkow",
-  "license": "MPL 2.0",
-  "version": "2.0"
+  "title": "Custom Scaling Toggle",
+  "name": "devpixelsperpx-toggle-custom",
+  "version": "0.0.2",
+  "description": "This addon allows you to quickly toggle between an interface zoom level of yor choice and the default.",
+  "main": "index.js",
+  "author": "Roope Salmi",
+  "engines": {
+    "firefox": ">=38.0a1",
+    "fennec": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "jetpack"
+  ],
+  "preferences": [
+    {
+     "name": "value",
+     "title": "Scaling amount",
+     "description": "Define the amount to scale the UI when enabled. A setting of one means default scaling.",
+     "type": "string",
+     "value": "1.5"
+    },
+    {
+      "name": "enabled",
+      "title": "Enable or disable scaling",
+      "description": "This setting is normally controlled from the toggle button.",
+      "type": "bool",
+      "value": true,
+      "hidden": true
+    }
+  ]
 }
