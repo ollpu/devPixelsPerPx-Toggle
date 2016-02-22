@@ -1,16 +1,15 @@
-const {Cc,Ci} = require("chrome");
 var buttons = require('sdk/ui/button/action');
 var tabs = require("sdk/tabs");
-var dpPref = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch);
+var dpPref = require("sdk/preferences/service");
 var simple_prefs = require("sdk/simple-prefs");
 var prefs = simple_prefs.prefs;
 var enabled = prefs.enabled;
 
 function set() {
   if (enabled) {
-    dpPref.setCharPref("layout.css.devPixelsPerPx", prefs.value);
+    dpPref.set("layout.css.devPixelsPerPx", prefs.value);
   } else {
-    dpPref.clearUserPref("layout.css.devPixelsPerPx");
+    dpPref.reset("layout.css.devPixelsPerPx");
   }
 }
 set();
@@ -36,6 +35,6 @@ function handleClick(state) {
 
 exports.onUnload = function(reason) {
   // Reset when disabled
-  dpPref.clearUserPref("layout.css.devPixelsPerPx");
+  dpPref.reset("layout.css.devPixelsPerPx");
   simple_prefs.removeListener("value");
 };
