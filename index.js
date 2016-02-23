@@ -1,18 +1,18 @@
 var buttons = require('sdk/ui/button/action');
-var tabs = require("sdk/tabs");
 var dpPref = require("sdk/preferences/service");
 var simple_prefs = require("sdk/simple-prefs");
 var prefs = simple_prefs.prefs;
-var enabled = prefs.enabled;
 
 function set() {
-  if (enabled) {
+  if (prefs.enabled) {
     dpPref.set("layout.css.devPixelsPerPx", prefs.value);
   } else {
     dpPref.reset("layout.css.devPixelsPerPx");
   }
 }
 set();
+
+exports.set = () => set();
 
 simple_prefs.on("value", set);
 
@@ -28,8 +28,7 @@ var button = buttons.ActionButton({
 });
 
 function handleClick(state) {
-  enabled = !enabled;
-  prefs.enabled = enabled;
+  prefs.enabled = !prefs.enabled;
   set();
 }
 
