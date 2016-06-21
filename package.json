@@ -1,7 +1,7 @@
 {
   "title": "Custom Scaling Toggle",
   "name": "devpixelsperpx-toggle-custom",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This addon allows you to quickly cycle between different interface zoom levels of your choice.",
   "main": "index.js",
   "author": "Roope Salmi",
@@ -34,7 +34,10 @@
       "description": "This setting is normally controlled from the cycle button.",
       "type": "integer",
       "value": 1,
-      "hidden": false
+      "hidden": true
     }
-  ]
+  ],
+  "permissions": {
+    "multiprocess": true
+  }
 }
