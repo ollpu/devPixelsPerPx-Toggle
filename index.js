@@ -5,6 +5,11 @@ var prefs = simple_prefs.prefs;
 var values;
 
 function parseValues() {
+  // Migrate from 0.0.3
+  if (typeof prefs.value !== "undefined") {
+    prefs.values = prefs.value;
+    delete prefs.value;
+  }
   values = ["-1.0"].concat(prefs.values.trim().split(/\s*,\s*/));
 }
 parseValues();
