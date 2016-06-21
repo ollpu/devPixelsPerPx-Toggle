@@ -2,19 +2,24 @@ var buttons = require('sdk/ui/button/action');
 var dpPref = require("sdk/preferences/service");
 var simple_prefs = require("sdk/simple-prefs");
 var prefs = simple_prefs.prefs;
+var values;
+
+function parseValues() {
+  values = ["-1.0"].concat(prefs.values.trim().split(/\s*,\s*/));
+}
+parseValues();
 
 function set() {
-  if (prefs.enabled) {
-    dpPref.set("layout.css.devPixelsPerPx", prefs.value);
+  parseValues();
+  if (prefs.state) { // States other than 0
+    dpPref.set("layout.css.devPixelsPerPx", values[Math.min(prefs.state, values.length-1)]);
   } else {
     dpPref.reset("layout.css.devPixelsPerPx");
   }
 }
 set();
-
 exports.set = () => set();
-
-simple_prefs.on("value", set);
+simple_prefs.on("values", set);
 
 var button = buttons.ActionButton({
   id: "devPixelsPerPx-toggle",
@@ -27,8 +32,24 @@ var button = buttons.ActionButton({
   onClick: handleClick
 });
 
+function handleBadge() {
+  var state = prefs.state;
+  if (state) {
+    button.badge = state;
+    button.badgeColor = "hsl(" + (state*prefs.col_seed%256) + ",80%,40%)";
+  } else {
+    button.badge = 'D';
+    button.badgeColor = "#a6a6a6";
+  }
+}
+handleBadge();
+simple_prefs.on("col_seed", handleBadge);
+
 function handleClick(state) {
-  prefs.enabled = !prefs.enabled;
+  prefs.state++;
+  prefs.state %= values.length;
+  
+  handleBadge();
   set();
 }
 

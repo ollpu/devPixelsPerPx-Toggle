@@ -1,8 +1,8 @@
 {
   "title": "Custom Scaling Toggle",
   "name": "devpixelsperpx-toggle-custom",
-  "version": "0.0.3",
-  "description": "This addon allows you to quickly toggle between an interface zoom level of yor choice and the default.",
+  "version": "1.0.0",
+  "description": "This addon allows you to quickly cycle between different interface zoom levels of your choice.",
   "main": "index.js",
   "author": "Roope Salmi",
   "engines": {
@@ -15,19 +15,26 @@
   ],
   "preferences": [
     {
-     "name": "value",
-     "title": "Scaling amount",
-     "description": "Define the amount to scale the UI when enabled. A setting of one means default scaling.",
+     "name": "values",
+     "title": "List of scaling amounts",
+     "description": "Provide a comma-seperated list of the options you want to be able to cycle through in addition to the unset value. (1.0 is equivalent to the default value)",
      "type": "string",
-     "value": "1.5"
+     "value": "1.5, 1.2, 0.9"
     },
     {
-      "name": "enabled",
-      "title": "Enable or disable scaling",
-      "description": "This setting is normally controlled from the toggle button.",
-      "type": "bool",
-      "value": true,
-      "hidden": true
+      "name": "col_seed",
+      "title": "Status color seed",
+      "description": "This value is used to determine the color of the status badge. Change the value to customize your palette!",
+      "type": "integer",
+      "value": 38253
+    },
+    {
+      "name": "state",
+      "title": "State of scaling",
+      "description": "This setting is normally controlled from the cycle button.",
+      "type": "integer",
+      "value": 1,
+      "hidden": false
     }
   ]
 }
