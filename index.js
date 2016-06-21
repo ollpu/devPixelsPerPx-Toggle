@@ -23,7 +23,7 @@ simple_prefs.on("values", set);
 
 var button = buttons.ActionButton({
   id: "devPixelsPerPx-toggle",
-  label: "Toggle Interface Scaling",
+  label: "Cycle Interface Scaling",
   icon: {
     "16": "./icon-32.png",
     "32": "./icon-32.png",
