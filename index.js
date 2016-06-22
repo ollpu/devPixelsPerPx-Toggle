@@ -6,9 +6,9 @@ var values;
 
 function parseValues() {
   // Migrate from 0.0.3
-  if (typeof prefs.value !== "undefined") {
+  if (typeof prefs.value !== "undefined" && prefs.value !== "moved to values") {
     prefs.values = prefs.value;
-    delete prefs.value;
+    prefs.value = "moved to values";
   }
   values = ["-1.0"].concat(prefs.values.trim().split(/\s*,\s*/));
 }
